@@ -1,22 +1,26 @@
-// const express = require("express");
-
 import express from "express";
 const app = express();
-const port = 3000;
+const port = 13128;
 
 import { getWebsiteTitle } from "./util.js";
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 app.get("/snapTitle", async (req, res) => {
-  const url = req.query.url;
+  try {
+    const url = req._parsedUrl.search.split("?url=")[1];
+    console.log(111, url);
 
-  if (!url) return res.send("");
+    if (!url) return res.send("");
 
-  const title = await getWebsiteTitle(url);
-  res.send(title);
+    const title = await getWebsiteTitle(url);
+    res.send(title);
+    console.log('send ok ',url)
+  } catch (error) {
+    console.error('app.js error: ',error)
+  }
 });
 
 app.listen(port, () => {
