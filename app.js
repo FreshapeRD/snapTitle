@@ -17,7 +17,7 @@ app.get("/snapTitle", async (req, res) => {
 
     const title = await getWebsiteTitle(url);
     res.send(title);
-    console.log('send ok ',url)
+    console.log('send ok ',url,title)
   } catch (error) {
     console.error('app.js error: ',error)
   }
