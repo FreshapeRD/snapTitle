@@ -10,8 +10,9 @@ app.get("/", (req, res) => {
 
 app.get("/snapTitle", async (req, res) => {
   try {
-    const url = req._parsedUrl.search.split("?url=")[1];
-    console.log(111, url);
+    let url = req._parsedUrl.search.split("?url=")[1];
+    url=decodeURIComponent(url)
+    // console.log(111, url);
 
     if (!url) return res.send("");
 
